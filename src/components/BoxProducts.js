@@ -1,4 +1,5 @@
 import React from "react";
+import IconCart from "../Images/icon-cart.svg";
 
 function BoxProducts(props) {
   const { name, img, detailPrice } = props;
@@ -14,7 +15,7 @@ function BoxProducts(props) {
             {detailPrice.discount ? '$'+detailPrice.discount : ""}
           </div>
         </div>
-        <button className="BoxProducts__button-cart">Agregar al carrito</button>
+        <button className="BoxProducts__button-cart"><img className="BoxProducts__iconCart" src={IconCart} alt="img-IconCart" />Agregar al carrito</button>
       </div>
     </div>
   );

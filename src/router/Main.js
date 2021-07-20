@@ -7,6 +7,7 @@ function Main(props) {
   return (
     <React.Fragment>
       <Route exact path="/" component={Home} />
+      <Route exact path="/home" component={Home} />
       <Route path="/resultSearch" component={ResultSearch} />
     </React.Fragment>
   );

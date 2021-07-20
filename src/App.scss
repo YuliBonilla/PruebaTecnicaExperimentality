@@ -12,6 +12,28 @@ $color-grey-ligth-2: #dedede;
 $color-grey-dark: #494d54;
 $color-shadow-ligth: #00000015;
 
+@keyframes closeMenu {
+  0% {
+    opacity: 1;
+    transform: translate(0rem);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50rem);
+  }
+}
+
+@keyframes openMenu {
+  0% {
+    opacity: 1;
+    transform: translate(-50rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -26,6 +48,7 @@ input:hover {
 
 html {
   font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+  scroll-behavior: smooth;
 }
 
 .header {
@@ -275,6 +298,13 @@ html {
     width: 70%;
     cursor: pointer;
     align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  &__iconCart {
+    filter: invert(100%);
+    width: 2rem;
   }
 }
 
@@ -354,10 +384,7 @@ html {
     }
   }
   &__slider {
-    height: 739px;
-    @media only screen and (max-width: 768px) {
-      height: 145px;
-    }
+    height: 39vw;
   }
   &__button {
     position: absolute;
@@ -395,6 +422,12 @@ html {
     padding: 2rem;
     font-weight: bold;
     box-shadow: 0px 3px 6px $color-shadow-button;
+    &--close {
+      animation: closeMenu 1s ease-in forwards;
+    }
+    &--open {
+      animation: openMenu 1s ease-out forwards;
+    }
   }
   &__close {
     display: flex;
@@ -402,5 +435,22 @@ html {
     &--img {
       width: 3rem;
     }
+  }
+}
+
+.loader {
+  &__container {
+    background: $color-shadow-ligth;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    top: 0;
+    display: flex;
+    justify-content: center;
+  }
+  &__gif {
+    width: 150px;
+    align-self: center;
   }
 }

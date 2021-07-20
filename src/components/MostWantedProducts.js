@@ -11,19 +11,17 @@ function MostWantedProducts(props) {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
 
   function moveLeft() {
-    if (isTabletOrMobile) {
-      refContainerItems.current.scrollLeft -= 300;
-    } else {
-      refContainerItems.current.scrollLeft -= 100;
-    }
+    refContainerItems.current.scroll({
+      left: refContainerItems.current.scrollLeft - 500,
+      behavior: "smooth",
+    });
   }
 
   function moveRigth() {
-    if (isTabletOrMobile) {
-      refContainerItems.current.scrollLeft += 300;
-    } else {
-      refContainerItems.current.scrollLeft += 100;
-    }
+    refContainerItems.current.scroll({
+      left: refContainerItems.current.scrollLeft + 500,
+      behavior: "smooth",
+    });
   }
 
   useEffect(() => {

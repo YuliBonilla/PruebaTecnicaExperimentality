@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from "react";
 import BoxProducts from "../components/BoxProducts";
-import { getDetailPrice } from "../utils";
+import { getDetailPrice, getLoad } from "../utils";
 
 function ResultSearch(props) {
   const [data, setData] = useState([]);
+  const[load, setLoad] = useState(false)
   const queryString = require("query-string");
 
   useEffect(() => {
     const parsed = queryString.parse(props.location.search);
+    setLoad(true)
     fetch(
       "https://api.mercadolibre.com/sites/MCO/search?category=MCO1430&q=" +
         parsed.q
     )
       .then((response) => response.json())
       .then((dataJson) => {
+        setLoad(false)
         if (dataJson.results.length > 0) {
           var dataFormated = dataJson.results.map((item) => {
             return {
@@ -45,6 +48,7 @@ function ResultSearch(props) {
   return (
     <div className="resultSearch__container">
       {data.length > 0 && getItems()}
+      {load && getLoad(true)}
     </div>
   );
 }

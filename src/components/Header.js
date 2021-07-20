@@ -1,21 +1,35 @@
 import React, { useState } from "react";
 import ClothesStore from "../Images/ClothesStore.png";
 import IconSearch from "../Images/Icon-ionic-ios-search.png";
-import IconCart from "../Images/icon-cart.png";
+import IconCart from "../Images/icon-cart.svg";
 import IconUser from "../Images/icon-user.png";
 import IconClose from "../Images/closeIcon.svg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 function Header(props) {
   const [inputValue, setInputValue] = useState("");
   const [openHamburguer, setOpenHamburguer] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
+  const history = useHistory()
 
   function getHamburguer() {
     return (
-      <div className="hamburguer__container">
-        <div className="hamburguer__close"  onClick={() => setOpenHamburguer(!openHamburguer)}>
-          <img src={IconClose} className="hamburguer__close--img" alt="img-close" />
+      <div
+        className={
+          openHamburguer
+            ? "hamburguer__container hamburguer__container--open"
+            : "hamburguer__container hamburguer__container--close"
+        }
+      >
+        <div
+          className="hamburguer__close"
+          onClick={() => setOpenHamburguer(!openHamburguer)}
+        >
+          <img
+            src={IconClose}
+            className="hamburguer__close--img"
+            alt="img-close"
+          />
         </div>
         <div>Hombre</div>
         <div>Mujer</div>
@@ -42,6 +56,7 @@ function Header(props) {
           src={ClothesStore}
           className="header__imgTitle"
           alt="img-ClothesStore"
+          onClick={() =>history.push('/home')}
         />
         <img className="header__iconCart" src={IconCart} alt="img-IconCart" />
         <div className="header__boxOptions">
@@ -72,6 +87,7 @@ function Header(props) {
           src={ClothesStore}
           className="header__imgTitle"
           alt="img-ClothesStore"
+          onClick={() =>history.push('/home')}
         />
         <div className="header__boxOptions">
           <div className="header__boxInputSearch">
@@ -103,7 +119,7 @@ function Header(props) {
   return (
     <React.Fragment>
       {isTabletOrMobile ? headerResponsive() : headerDesktop()}
-      {openHamburguer && getHamburguer()}
+      {isTabletOrMobile && getHamburguer()}
     </React.Fragment>
   );
 }

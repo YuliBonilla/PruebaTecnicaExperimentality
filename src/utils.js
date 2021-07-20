@@ -1,3 +1,5 @@
+import loadingGift from './Images/loading.gif'
+
 function getDetailPrice(objPrices, totalPrice) {
   if (!objPrices) {
     return { price: totalPrice };
@@ -24,4 +26,13 @@ function getNumberRandom(min, max) {
   return Math.round(Math.random() * (max - min) + parseInt(min));
 }
 
-export { getDetailPrice, getPercent, getNumberRandom };
+function getLoad(open) {
+  console.log('entras',open)
+  if(open){
+    return (<div className="loader__container">
+      <img src={loadingGift} className="loader__gif" alt="loader"></img>
+    </div>)
+  }
+}
+
+export { getDetailPrice, getPercent, getNumberRandom, getLoad };
