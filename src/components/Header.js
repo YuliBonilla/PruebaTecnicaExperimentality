@@ -9,8 +9,9 @@ import { useMediaQuery } from "react-responsive";
 function Header(props) {
   const [inputValue, setInputValue] = useState("");
   const [openHamburguer, setOpenHamburguer] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 768px)" });
-  const history = useHistory()
+  const history = useHistory();
 
   function getHamburguer() {
     return (
@@ -56,7 +57,7 @@ function Header(props) {
           src={ClothesStore}
           className="header__imgTitle"
           alt="img-ClothesStore"
-          onClick={() =>history.push('/home')}
+          onClick={() => history.push("/home")}
         />
         <img className="header__iconCart" src={IconCart} alt="img-IconCart" />
         <div className="header__boxOptions">
@@ -80,6 +81,13 @@ function Header(props) {
     );
   }
 
+  function handleSearch(e) {
+    if (e.charCode === 13) {
+      setInputValue(e.target.value)
+      history.push("/resultSearch?q=" + inputValue)
+    }
+  }
+
   function headerDesktop() {
     return (
       <header className="header__container">
@@ -87,7 +95,7 @@ function Header(props) {
           src={ClothesStore}
           className="header__imgTitle"
           alt="img-ClothesStore"
-          onClick={() =>history.push('/home')}
+          onClick={() => history.push("/home")}
         />
         <div className="header__boxOptions">
           <div className="header__boxInputSearch">
@@ -96,6 +104,7 @@ function Header(props) {
               onChange={(e) => setInputValue(e.target.value)}
               className="header__inputSearch"
               placeholder="Buscar aquí producto"
+              onKeyPress={(e) => handleSearch(e)}
             />
             <Link to={"/resultSearch?q=" + inputValue}>
               <img
@@ -110,7 +119,6 @@ function Header(props) {
           <button className="header__button header__button--login">
             Iniciar sesión
           </button>
-          )
         </div>
       </header>
     );

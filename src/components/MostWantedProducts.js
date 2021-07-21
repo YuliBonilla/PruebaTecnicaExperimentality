@@ -28,7 +28,6 @@ function MostWantedProducts(props) {
     fetch("https://api.mercadolibre.com/sites/MCO/search?category=MCO1430")
       .then((response) => response.json())
       .then((dataJson) => {
-        console.log("dataJson.results", dataJson.results);
         if (dataJson.results.length > 0) {
           var numbersRandom = [];
           for (let index = 0; index < 10; index++) {
@@ -40,7 +39,6 @@ function MostWantedProducts(props) {
           }
           var dataFormated = [];
           for (let index = 0; index < numbersRandom.length; index++) {
-            console.log("number", numbersRandom[index]);
             dataFormated.push({
               id: dataJson.results[numbersRandom[index]].id,
               name: dataJson.results[numbersRandom[index]].title,
@@ -51,7 +49,6 @@ function MostWantedProducts(props) {
               ),
             });
           }
-          console.log("dataFormated puf", dataFormated);
           setDataproducts(dataFormated);
         }
       });

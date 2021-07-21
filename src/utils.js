@@ -27,7 +27,6 @@ function getNumberRandom(min, max) {
 }
 
 function getLoad(open) {
-  console.log('entras',open)
   if(open){
     return (<div className="loader__container">
       <img src={loadingGift} className="loader__gif" alt="loader"></img>
